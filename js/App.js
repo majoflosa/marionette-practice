@@ -16,11 +16,11 @@ function(Backbone, Mn, AppRouter, RootView) {
         
         onStart: function() {
             // console.log( 'Application has started' );
-
             var router = new AppRouter();
             router.on('route:taskDetails', function() {
                 console.log( 'route:taskDetails was triggered' );
             });
+
             Backbone.history.start();
 
             this.showView( new RootView({foo: 'bar'}, [1, 2, 3], 'test') );

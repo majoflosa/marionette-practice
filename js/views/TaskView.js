@@ -40,8 +40,8 @@ function(_, Mn, taskTemplate) {
             });
         },
 
-        handleModelChange: function() {
-            console.log( 'change:status was triggered' );
+        handleModelChange: function( e ) {
+            console.log( 'change:status was triggered: ', e );
         },
 
         onRender: function() {

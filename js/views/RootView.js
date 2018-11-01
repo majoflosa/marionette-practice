@@ -1,7 +1,4 @@
 define([
-    // 'jquery',
-    // 'underscore',
-    // 'backbone',
     'marionette', 
     'views/HeaderView', 
     'views/BodyView',

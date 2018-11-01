@@ -23,15 +23,13 @@ app.get('/api/tasks/', (req, res) => {
 
 app.post('/api/tasks', (req, res) => {
     console.log( 'post endpoint hit: ', req.body );
-    // if ( !req.body ) return res.status(500).json({error: 'req.body is undefined' });
 
-    // initialTasks = initialTasks.map( task => {
-    //     if ( task.title === req.body.title ) task = req.body;
-    //     return task;
-    // });
-    // let updatedTask = initialTasks.find( task => task.title === req.body.title );
+    initialTasks.push( req.body );
+    initialTasks[initialTasks.length - 1].id = initialTasks.length;
+
+    // console.log( initialTasks )
     
-    // return res.status(200).json( updatedTask );
+    return res.status(200).json( initialTasks[initialTasks.length - 1] );
 });
 
 app.put('/api/tasks/:id', (req, res) => {
