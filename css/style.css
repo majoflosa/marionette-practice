@@ -12,17 +12,18 @@ a, a:hover, a:visited, a:active {
     font-size: 14px;
 }
 
-.btn {
+.btn, a.btn {
     text-align: center;
     background: #555555;
     color: #ffffff;
+    font-size: 14px;
     text-transform: uppercase;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
 }
 
-.btn:hover {
+.btn:hover, a.btn:hover {
     background: #888888;
 }
 
@@ -91,4 +92,16 @@ a, a:hover, a:visited, a:active {
 .task-wrap .mark-done {
     background: #dddddd;
     color: #555555;
+}
+
+.task-wrap .delete-task.btn {
+    color: #555555;
+    border: 1px solid #555555;
+    background: #ffffff;
+    padding: 6px 12px;
+}
+
+.task-wrap .delete-task.btn:hover {
+    background: #555555;
+    color: #ffffff;
 }

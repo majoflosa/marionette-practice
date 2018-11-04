@@ -5,12 +5,13 @@ define([
     'router/AppRouter',
     // 'views/TaskView',
     'views/TaskListView',
+    'views/TaskDetailsView',
     'models/TaskModel',
     'collections/TaskCollection',
     'text!templates/body.html'
 ], 
 
-function(_, Mn, AppRouter, TaskListView, TaskModel, TaskCollection, bodyTemplate) {
+function(_, Mn, AppRouter, TaskListView, TaskDetailsView, TaskModel, TaskCollection, bodyTemplate) {
 
     var BodyView = Mn.View.extend({
         regions: {
@@ -29,26 +30,30 @@ function(_, Mn, AppRouter, TaskListView, TaskModel, TaskCollection, bodyTemplate
         initialize: function() {
             this.tasks = new TaskCollection();
             this.taskList = new TaskListView({ collection: this.tasks });
-
+            
             this.router = new AppRouter();
             this.listenTo( this.router, 'route:taskDetails', this.toDetails );
             this.listenTo( this.router, 'route:home', this.toHome );
         },
         
         template: _.template( bodyTemplate ),
-
+        
         onRender: function() {
             // console.log( 'BodyView has rendered' );
-
+            
             this.showChildView( 'taskList', this.taskList );
         },
-
-        toDetails: function() {
+        
+        toDetails: function( taskId ) {
             this.detachChildView('taskList');
-            console.log( 'Now showing task details' );
+            this.taskDetails = new TaskDetailsView({ model: this.tasks.get( taskId ) });
+            this.showChildView('taskList', this.taskDetails );
+            console.log( 'Now showing task details: ', taskId );
         },
 
         toHome: function() {
+            this.detachChildView('taskList');
+
             this.render();
         },
 

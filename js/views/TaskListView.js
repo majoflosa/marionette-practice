@@ -3,12 +3,12 @@ define([
     // 'underscore',
     // 'backbone',
     'marionette',
-    // 'collections/TaskCollection',
+    'collections/TaskCollection',
     // 'models/TaskModel',
     'views/TaskView'
 ],
 
-function(Mn, TaskView) {
+function(Mn, TaskCollection, TaskView) {
 
     var TaskListView = Mn.CollectionView.extend({
         // el: '#task-list',
@@ -16,8 +16,17 @@ function(Mn, TaskView) {
 
         childView: TaskView,
 
+        initialize: function() {
+            this.listenTo(this.collection, 'add', this.handleAddModel );
+        },
+
         onRender: function() {
             // console.log( 'Rendering TaskListVIew' );
+            console.log( 'this collection: ', this.collection );
+        },
+
+        handleAddModel: function( model ) {
+            console.log('model is being added now: ', model);
         }
     });
 

@@ -45,5 +45,13 @@ app.put('/api/tasks/:id', (req, res) => {
     return res.status(200).json( updatedTask );
 });
 
+app.delete('/api/tasks/:id', (req, res) => {
+    console.log('delete endpoint hit: ', req.body );
+
+    initialTasks = initialTasks.filter( task => task.id !== +req.params.id );
+
+    return res.status(200).json( initialTasks );
+});
+
 
 app.listen( 4000, () => console.log('Server running on port 4000') );

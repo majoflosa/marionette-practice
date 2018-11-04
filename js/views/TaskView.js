@@ -20,11 +20,13 @@ function(_, Mn, taskTemplate) {
         },
 
         ui: {
-            markDone: '.mark-done'
+            markDone: '.mark-done',
+            deleteTask: '.delete-task'
         },
 
         events: {
-            'click @ui.markDone': 'handleCompleteTask'
+            'click @ui.markDone': 'handleCompleteTask',
+            'click @ui.deleteTask': 'handleDeleteTask'
         },
 
         handleCompleteTask: function() {
@@ -37,6 +39,17 @@ function(_, Mn, taskTemplate) {
                     _this.$el.find('.task-status').text( response.status );
                 },
                 error: function(model, response) { console.log('model update failed. response: ', response)}
+            });
+        },
+
+        handleDeleteTask: function() {
+            this.model.destroy({
+                success: function(model, response) {
+                    console.log('model deleted successfully');
+                },
+                error: function(model, response) {
+                    console.log('Model could not be deleted.');
+                }
             });
         },
 

@@ -1,0 +1,17 @@
+<header class="details-header">
+    <h2 class="details-title"><%= title %></h2>
+</header>
+
+<main class="details-main">
+    <h3>Description</h3>
+    <p class="task-description"><%= description %></p>
+</main>
+
+<footer class="details-footer">
+    <h3>Status</h3>
+    <div class="status-menu-wrap">
+        <span class="task-status <% if (status === 'ongoing') { print('selected') } %>">Ongoing</span>
+        <span class="task-status <% if (status === 'revising') { print('selected') } %>">Revising</span>
+        <span class="task-status <% if (status === 'done') { print('selected') } %>">Done</span>
+    </div>
+</footer>
